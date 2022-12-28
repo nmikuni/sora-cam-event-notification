@@ -26,7 +26,6 @@ Soracom Cloud Camera Service (ソラカメ) のモーション検知イベント
 3. [AWS](https://aws.amazon.com/jp/?nc2=h_lg) アカウントを用意する
 4. [SORACOM SAM ユーザー](https://users.soracom.io/ja-jp/docs/sam/) の認証情報 (認証キー ID、認証キー) を準備する
 5. [AWS Serverless Application Model](https://aws.amazon.com/jp/serverless/sam/) (SAM) をセットアップする
-   - この手順においては、SAM の利用にあたって Docker の準備も合わせて必要です。
 
 ### アプリケーションのデプロイ
 
