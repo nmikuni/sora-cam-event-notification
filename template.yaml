@@ -44,4 +44,4 @@ Resources:
           Type: Schedule
           Properties:
             Name: sora-cam-event-notification-schedule
-            Schedule: cron(0 * ? * * *)
+            Schedule: cron(* * ? * * *)
