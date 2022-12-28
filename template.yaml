@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  sora-cam-event-notification
+
+Parameters:
+  soracomAuthKeyId:
+    Type: String
+    Default: "keyId-xxxxxxx"
+  soracomAuthKey:
+    Type: String
+    Default: "secret-xxxxxx"
+  deviceId:
+    Type: String
+    Default: "XXXXXXXXXXXX"
+  lineNotifyToken:
+    Type: String
+    Default: "replace it to your own token"
+
+Globals:
+  Function:
+    Timeout: 30
+
+Resources:
+  NotificationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: sora-cam-event-notification
+      CodeUri: app
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      Environment:
+        Variables:
+          SORACOM_AUTH_KEY_ID: !Ref soracomAuthKeyId
+          SORACOM_AUTH_KEY: !Ref soracomAuthKey
+          DEVICE_ID: !Ref deviceId
+          LINE_NOTIFY_TOKEN: !Ref lineNotifyToken
+      Architectures:
+        - x86_64
+      Layers:
+        - arn:aws:lambda:us-east-1:717257875195:layer:soracom-cli-0140:1
+      Events:
+        Schedule:
+          Type: Schedule
+          Properties:
+            Name: sora-cam-event-notification-schedule
+            Schedule: cron(0 * ? * * *)
