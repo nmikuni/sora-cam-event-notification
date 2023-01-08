@@ -26,7 +26,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: sora-cam-event-notification
-      CodeUri: app
+      CodeUri: sora_cam_event_notification
       Handler: app.lambda_handler
       Runtime: python3.7
       Environment:
@@ -37,7 +37,7 @@ Resources:
           LINE_NOTIFY_TOKEN: !Ref lineNotifyToken
       Architectures:
         - x86_64
-      ## The Layer region should be same as the NotificationFunction Lambda.
+      # The Layer region should be same as the NotificationFunction Lambda.
       Layers:
         - arn:aws:lambda:ap-northeast-1:717257875195:layer:soracom-cli-0140:1
       Events:
@@ -45,4 +45,5 @@ Resources:
           Type: Schedule
           Properties:
             Name: sora-cam-event-notification-schedule
+            # By default, scheduled to trigger the Lambda every minute.
             Schedule: cron(* * ? * * *)
