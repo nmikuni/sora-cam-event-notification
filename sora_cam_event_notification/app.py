@@ -12,12 +12,8 @@ COMMON_ARG = ' --auth-key-id ' + SORACOM_AUTH_KEY_ID + \
     ' --auth-key ' + SORACOM_AUTH_KEY
 LINE_NOTIFY_TOKEN = os.environ.get("LINE_NOTIFY_TOKEN")
 
-"""
-By default, this Lambda will be triggered every minute.
-It is defined in template.yaml -> `Schedule: cron(* * ? * * *)`.
-If you change the trigger frequency, also change the following variable.
-"""
-EVENT_RETRIEVE_INTERVAL_SEC = 60
+EVENT_RETRIEVE_INTERVAL_SEC = int(
+    os.environ.get("EVENT_RETRIEVE_INTERVAL_SEC"))
 
 
 def lambda_handler(event, context):
