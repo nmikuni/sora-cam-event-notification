@@ -35,6 +35,8 @@ Resources:
           SORACOM_AUTH_KEY: !Ref soracomAuthKey
           DEVICE_ID: !Ref deviceId
           LINE_NOTIFY_TOKEN: !Ref lineNotifyToken
+          # If you change the trigger frequency, also change the following variable.
+          EVENT_RETRIEVE_INTERVAL_SEC: "60"
       Architectures:
         - x86_64
       # The Layer region should be same as the NotificationFunction Lambda.
